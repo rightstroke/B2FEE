@@ -1,0 +1,10 @@
+@media media-type and (media-feature-rule) {
+
+   /* your css */
+
+}
+
+all
+print
+screen
+speech
