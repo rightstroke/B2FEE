@@ -5,7 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.org.app.myfirstrestapi.config.MyConfig;
+import com.org.app.myfirstrestapi.entity.Student;
 import com.org.app.myfirstrestapi.service.CustomerManager;
+import com.org.app.myfirstrestapi.service.StudentManager;
+import com.org.app.myfirstrestapi.vo.CreateStudentRequest;
+import com.org.app.myfirstrestapi.vo.CreateStudentRespone;
 import com.org.app.myfirstrestapi.vo.Customer;
 import com.org.app.myfirstrestapi.vo.MyBean;
 
@@ -31,6 +35,9 @@ public class MyApiController extends BaseController {
 
     @Autowired
     private CustomerManager service;
+
+    @Autowired
+    private StudentManager stuService;
 
     @Autowired
     private MyConfig myConfig;
@@ -65,11 +72,27 @@ public class MyApiController extends BaseController {
         return new ResponseEntity<List<String>>(lstConfig, HttpStatus.OK);
     }
 
+    
     @GetMapping(value = "/names/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<String>> getNamesById(@PathVariable int id) throws Exception {
         System.out.println(id);
         return new ResponseEntity<List<String>>(service.getNames(), HttpStatus.OK);
     }
 
+
+    @PostMapping(value = "/student",produces = MediaType.APPLICATION_JSON_VALUE)    
+    public ResponseEntity<List<Student>> saveStudent(@RequestBody Student stuReq){
+        stuService.save(stuReq);
+
+        //CreateStudentRespone stuRes = new CreateStudentRespone();
+
+        System.out.println("====" + stuReq.getId());
+
+        //Integer id = stuService.fetchById(stuReq.getStu().getId());
+
+        //stuRes.setStudentId(stuService.fetchById(stuReq.getStu().getId()).get());
+
+        return new ResponseEntity<List<Student>>(stuService.fetchAll(),HttpStatus.OK);
+    }
 
 }
