@@ -20,5 +20,6 @@ public interface StudentRepo extends JpaRepository<Student,Integer> {
 
     @Query(value="select * from tbl_student where lname like '%:filter%'",nativeQuery=true)
     public List<Object[]> fetchBylName(String filter);
+
     
 }

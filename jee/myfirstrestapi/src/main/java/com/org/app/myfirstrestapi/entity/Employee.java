@@ -13,20 +13,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tbl_college")
-public class College {
-     
+@Table(name = "tbl_employee")
+public class Employee {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+
     private String name;
 
-    private String address;
-
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name = "collId")
-    private List<Student> students;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "empid")
+    private List<Phone> phones;
 
     public int getId() {
         return id;
@@ -44,20 +43,14 @@ public class College {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
+    public List<Phone> getPhones() {
+        return phones;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setPhones(List<Phone> phones) {
+        this.phones = phones;
     }
 
-    public List<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(List<Student> students) {
-        this.students = students;
-    }
+  
 
 }

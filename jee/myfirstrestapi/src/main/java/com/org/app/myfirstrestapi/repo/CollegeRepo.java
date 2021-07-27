@@ -14,4 +14,6 @@ public interface CollegeRepo extends JpaRepository<College,Integer> {
 
     @Query("select c.students from College c where c.id = :collegeID")
     public List<Student> fetchStudentsByCollegeId(Integer collegeID);
+
+
 }

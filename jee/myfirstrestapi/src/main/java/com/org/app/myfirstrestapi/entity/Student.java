@@ -48,7 +48,7 @@ public class Student {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date ts;
 
-    //@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    // @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     // @JoinColumn(name="cid")
     // private College college;
 
@@ -58,10 +58,10 @@ public class Student {
     private StudentType sType;
 
 
-    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     @JoinTable(name = "tbl_i_sub_stu",
-        joinColumns = {@JoinColumn(name="stu_id",referencedColumnName = "id")},
-        inverseJoinColumns = {@JoinColumn(name="sub_id",referencedColumnName = "id")},
+        joinColumns = {@JoinColumn(name="stu_id",referencedColumnName = "id",nullable = false)},
+        inverseJoinColumns = {@JoinColumn(name="sub_id",referencedColumnName = "subcode",nullable = false)},
         uniqueConstraints = @UniqueConstraint(columnNames = {"stu_id","sub_id"})
     )
     private List<Subject> subjects;
@@ -106,14 +106,16 @@ public class Student {
         this.ts = ts;
     }
 
-    @Override
-    public String toString() {
-        return "Student [dob=" + dob + ", firstname=" + firstname + ", id=" + id + ", lastname=" + lastname + ", ts="
-                + ts + "]";
-    }
+ 
 
     public StudentType getsType() {
         return sType;
+    }
+
+    @Override
+    public String toString() {
+        return "Student [age=" + age + ", dob=" + dob + ", firstname=" + firstname + ", id=" + id + ", lastname="
+                + lastname + ", sType=" + sType + ", subjects=" + subjects + ", ts=" + ts + "]";
     }
 
     public void setsType(StudentType sType) {
@@ -129,12 +131,12 @@ public class Student {
     }
 
     // public College getCollege() {
-    //     return college;
-    // }
+    //      return college;
+    //  }
 
-    // public void setCollege(College college) {
-    //     this.college = college;
-    // }
+    //  public void setCollege(College college) {
+    //      this.college = college;
+    //  }
     
 
     public int getAge() {
