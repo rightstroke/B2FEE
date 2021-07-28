@@ -4,10 +4,15 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class Customer {
+
+    @ApiModelProperty(notes = "Name of the Customer",name="name",required =true,value="A valid Customer Name")
     private String name;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
+    @ApiModelProperty(notes = "Customer DOB",name="dob",required =true,value="A valid Customer Date of Birth")
     private Date dob;
 
     private int age;

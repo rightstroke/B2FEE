@@ -28,6 +28,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
+@Api(value="MyAPIController",description = "API Service that manages the different payment modes support by SwiftPayment API Project")
 @RestController
 @RequestMapping("api")
 public class MyApiController extends BaseController {
@@ -46,6 +52,14 @@ public class MyApiController extends BaseController {
     @Autowired
     private MyBean someMethod;
 
+    
+    
+    @ApiOperation(value="Creation of Customer Details", response = Iterable.class, tags = "regiserCustomer")
+    @ApiResponses(value={ 
+        @ApiResponse(code = 200, message = "RSC-Success|OK"),
+        @ApiResponse(code = 401, message = "RSC-not authorized!"), 
+        @ApiResponse(code = 403, message = "RSC-forbidden!!!"),
+        @ApiResponse(code = 404, message = "RSC-not found!!!") })
     @PutMapping(value = "/customer",produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<Customer>> regiserCustomer(@RequestBody Customer cust){
         logger.debug(cust.toString());
