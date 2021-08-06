@@ -41,7 +41,7 @@ export default function Login() {
             console.log(JSON.stringify(res));
             console.log(res.data.token);
             console.log(res.data.roles);
-            let authdata = new Auth(res.data.token,...res.data.roles);
+            let authdata = new Auth(res.data.token,res.data.roles);
             //authdata = new Auth('',[]);
             console.log(JSON.stringify(auth));
             sessionStorage.setItem("auth",JSON.stringify(authdata));

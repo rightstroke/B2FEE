@@ -1,0 +1,71 @@
+docker pull mysql:5.6
+
+
+docker network create mysqlnw
+docker volume create mysqldata
+
+
+docker network inspect c2ea6035b719
+
+///--volume=/storage/docker/mysql-data:/var/lib/mysql
+
+
+
+
+docker container run --name mysql56dev -p 3305:3306 --network mysqlnw -v mysqldata:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=rsc -d mysql:5.6
+
+create table tbl_customer(cust_id INT NOT NULL AUTO_INCREMENT,name VARCHAR(100) NOT NULL,email VARCHAR(40) NOT NULL, PRIMARY KEY ( cust_id ));
+
+From openjdk:8
+copy ./target/myfirstrestapi-0.0.1-SNAPSHOT.jar apps.jar
+CMD ["java","-jar","apps.jar"]
+
+docker
+docker container run --name restapidev -p 8808:8081 --network mysqlnw -d myrestapi:latest
+
+==================================================================================================
+
+rightstroke/********@********
+
+docker login 
+
+docker images
+
+1docker tag c96f125711b6 rightstroke/myrestapi:latest
+docker push rightstroke/myrestapi:latest
+
+kubectl create secret generic mysql-root-pass --from-literal=password=root
+kubectl create secret generic mysql-user-pass --from-literal=username=rsc --from-literal=password=rsc2123
+kubectl create secret generic mysql-db-url --from-literal=database=rsc --from-literal=url='jdbc:mysql://polling-app-mysql:3306/rsc?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false'
+
+kubectl get secrets
+kubectl describe secrets mysql-user-pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://phoenixnap.com/kb/install-minikube-on-ubuntu
+
